@@ -17,15 +17,18 @@ This program creates many configuration files and runs the program on them to ge
 1. `graph-plot.py` :
 This program uses the `tonglib` module to draw a graph of some example of map from the "doubling plus straight sine" family. This uses the Python module `mathsvg`.
 
-## What it can do
+## What it does
 
 The main program can do one of the following two processes.
 
-1. The use can select one of the families above and a range of parameter values in the form &#91; a<sub>min</sub>, a<sub>max</sub> &#93; &times; &#91; b<sub>min</sub>, b<sub>max</sub> &#93;. 
+1. The user can select one of the families above and a range of parameter values in the form &#91; a<sub>min</sub>, a<sub>max</sub> &#93; &times; &#91; b<sub>min</sub>, b<sub>max</sub> &#93;. 
+
 For each parameter in a discretized version of this range the program will compute a collection of orbits and try to determine whether these orbits are periodic or not.
 It will pick a color according to the detected period or a specific color if no periodicty has been found.
+
 The result will be an image where the coloration of the pixel correspond to the computed color at the corresponding parameter.
 The relation between parameter and pixel on the image is a straightforward affine mapping (the height and width of the picture are modifiable parameters).
+
 1. The user can select a family, a fixed value of *b* and an interval of values of *a*.
 For each value of *a* in a discretized version of the interval, the program computes a collection orbits and plot the final points of the orbit.
 The result is a bifurcation diagram in the same fashion as the familiar ones.
@@ -154,27 +157,27 @@ The `conf` directory contains examples of configuration files.
 ### Tongues
 
 1. `tongues-blowup-blowup.conf`: to draw part of the parameter plane of the "doubling plus tent" family.
-** Selected region: *0.005505 &le; a < 0.007245, 0.99439 &le; b < 0.99613*
-** Period max: 20 (periodicity test with precision 1/1000)
-** Test on 4 different orbits
-** `orbit_initial_segment_length`: 300
-** Creates an 800x800 image file named "project-blowup-strange-region.png"
+..* Selected region: *0.005505 &le; a < 0.007245, 0.99439 &le; b < 0.99613*
+..* Period max: 20 (periodicity test with precision 1/1000)
+..* Test on 4 different orbits
+..* `orbit_initial_segment_length`: 300
+..* Creates an 800x800 image file named "project-blowup-strange-region.png"
 1. `ddsm.conf`, for the "double dsm" family.
-** *0.5 &le; a < 1, 0.0625 &le; b < 1*
-** max period 10 (1/1000 tol.)
-** 5 orbits for each parameter
-** `orbit_initial_segment_length`: 30
-** Creates an 800x800 image file named "ddsm.png"
+..* *0.5 &le; a < 1, 0.0625 &le; b < 1*
+..* max period 10 (1/1000 tol.)
+..* 5 orbits for each parameter
+..* `orbit_initial_segment_length`: 30
+..* Creates an 800x800 image file named "ddsm.png"
 1. Similar to the previous ones:
-** `project-picture.conf`
-** `straight-sine-blowup.conf`, for the family "doubling plus straight sine"
-** `straight-sine-full.conf`, for the family "doubling plus straight sine", *0 &le; a < 1, 0.5 &le; b < 2*.
-** `tent.conf`, "doubling plus tent" family
-** `tent-all.conf`
-** `tongues-blowup.conf`, *0. &le; a < 0.012, 0.988 &le; b < 1*
-** `tongues-straight-sine.conf`
-** `tongues-straight-sine-data.conf`, saves all the results: the values of a & b in `dss-ab.txt`, the detected periods in `dss-periods.txt`, the tail of the computed orbits in `dss-x.txt`.
-** `tongues-straight-sine-large-region.conf`
+..* `project-picture.conf`
+..* `straight-sine-blowup.conf`, for the family "doubling plus straight sine"
+..* `straight-sine-full.conf`, for the family "doubling plus straight sine", *0 &le; a < 1, 0.5 &le; b < 2*.
+..* `tent.conf`, "doubling plus tent" family
+..* `tent-all.conf`
+..* `tongues-blowup.conf`, *0. &le; a < 0.012, 0.988 &le; b < 1*
+..* `tongues-straight-sine.conf`
+..* `tongues-straight-sine-data.conf`, saves all the results: the values of a & b in `dss-ab.txt`, the detected periods in `dss-periods.txt`, the tail of the computed orbits in `dss-x.txt`.
+..* `tongues-straight-sine-large-region.conf`
 
 ### Bifurcation diagrams
 
