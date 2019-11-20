@@ -1,4 +1,7 @@
-#!/usr/bin/python
+# Author:  alexn11 (alexn11.gh@gmail.com)
+# Created: 2019-11-19
+# Copyright (C) 2019, Alexandre De Zotti
+# License: MIT License
 
 
 import subprocess

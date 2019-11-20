@@ -1,4 +1,7 @@
-# ORIGIN: linearizer (didnt check that it was the most recent version)
+# Author:  alexn11 (alexn11.gh@gmail.com)
+# Created: 2019-11-19
+# Copyright (C) 2019, Alexandre De Zotti
+# License: MIT License
 
 import configparser
 
