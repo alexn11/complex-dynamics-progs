@@ -1,0 +1,36 @@
+
+- Test all examples a last time
+- remove compilation
+
+- remove default values:
+
+map_family = "doubling plus tent"
+
+do_draw_periods = True
+do_draw_bifurcation_diagram = True
+do_superlong_iterations = True
+
+number_of_values_of_a = 800
+
+orbit_initial_segment_length = 120
+orbit_final_segment_length = 200
+
+bifurcation_diagram_image_name = "tent-bif"
+results_file_name_a_b_values = "ab.txt"
+results_file_name_periods = "periods.txt"
+
+max_period_to_test = 10
+period_test_tol = 0.001
+image_width = 800
+image_height = 800
+
+
+- KEEP SOME DEFAULT:
+min_b = 0.5
+max_b = 1
+min_a = 0
+max_a = 1
+do_show_progress = True
+number_of_orbits_to_compute = 1
+default_starting_point = 0.2
+b = 1.
