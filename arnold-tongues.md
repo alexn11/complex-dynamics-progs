@@ -2,7 +2,7 @@
 
 ## What it is
 
-The folder `arnold-tongues` contains programs that can be used to draw parameter spaces of several families of circles maps.
+The folder [`arnold-tongues`](https://github.com/alexn11/complex-dynamics-progs/tree/master/arnold-tongues) contains programs that can be used to draw parameter spaces of several families of circles maps.
 The families are:
 - "double standard map" / "dsm" : *f<sub>a,b</sub>(x) = 2x + a - (b/&pi;) sin(2&pi;x)* (<https://www.cmup.pt/sites/default/files/publications/double.pdf>).
 - "double dsm" : *f<sub>a,b</sub>(x) = 2x + a - (b/2&pi;) sin(2&pi;x)*
@@ -10,12 +10,12 @@ The families are:
 - "doubling plus straight sine" : *f<sub>a,b</sub>(x) = 2x + a + (b/2) S(x)*, with *S(x) = 4x - 1* if *x &le; 1/2* else *S(x) = -4x + 3*.
 
 The list of programs inside the folders is as follows.
-1. `tongues.py` :
+1. [`tongues.py`][main prog] :
 It is the main program for this folder, it is used to draw parameter spaces of several families of circle maps.
-1. `bifurcation-diagram-generator.py` :
+1. [`bifurcation-diagram-generator.py`][bif dia script] :
 This program creates many configuration files and runs the program on them to generate a sequence of bifurcation diagrams in the "doubling plus tent" family with different values of b (for the specific parameters: see source).
-1. `graph-plot.py` :
-This program uses the `tonglib` module to draw a graph of some example of map from the "doubling plus straight sine" family. This uses the Python module `mathsvg`.
+1. [`graph-plot.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/graph-plot.py) :
+This program uses the `tonglib` module to draw a graph of some example of map from the "doubling plus straight sine" family. This uses the Python module [`mathsvg`][mathsvg module].
 
 ## What it does
 
@@ -164,28 +164,28 @@ The `conf` directory contains examples of configuration files.
 
 ### Tongues
 
-1. `tongues-blowup-blowup.conf`: to draw part of the parameter plane of the "doubling plus tent" family.
+1. [`tongues-blowup-blowup.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tongues-blowup-blowup.conf): to draw part of the parameter plane of the "doubling plus tent" family.
   * Selected region: *0.005505 &le; a < 0.007245, 0.99439 &le; b < 0.99613*
   * Period max: 20 (periodicity test with precision 1/1000)
   * Test on 4 different orbits
   * `orbit_initial_segment_length`: 300
-  * Creates an 800x800 image file named "project-blowup-strange-region.png"
-1. `ddsm.conf`, for the "double dsm" family.
+  * Creates an 800x800 image file named ["project-blowup-strange-region.png"](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/selected-results/project-blowup-strange-region.png)
+1. [`ddsm.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/ddsm.conf), for the "double dsm" family.
   * *0.5 &le; a < 1, 0.0625 &le; b < 1*
   * max period 10 (1/1000 tol.)
   * 5 orbits for each parameter
   * `orbit_initial_segment_length`: 30
   * Creates an 800x800 image file named "ddsm.png"
 1. Similar to the previous ones:
-  * `project-picture.conf`
-  * `straight-sine-blowup.conf`, for the family "doubling plus straight sine"
-  * `straight-sine-full.conf`, for the family "doubling plus straight sine", *0 &le; a < 1, 0.5 &le; b < 2*.
-  * `tent.conf`, "doubling plus tent" family
-  * `tent-all.conf`
-  * `tongues-blowup.conf`, *0. &le; a < 0.012, 0.988 &le; b < 1*
-  * `tongues-straight-sine.conf`
-  * `tongues-straight-sine-data.conf`, saves all the results: the values of a & b in `dss-ab.txt`, the detected periods in `dss-periods.txt`, the tail of the computed orbits in `dss-x.txt`.
-  * `tongues-straight-sine-large-region.conf`
+  * [`project-picture.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/project-picture.conf)
+  * [`straight-sine-blowup.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/straight-sine-blowup.conf), for the family "doubling plus straight sine"
+  * [`straight-sine-full.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/straight-sine-full.conf), for the family "doubling plus straight sine", *0 &le; a < 1, 0.5 &le; b < 2*.
+  * [`tent.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tent.conf), "doubling plus tent" family
+  * [`tent-all.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tent-all.conf)
+  * [`tongues-blowup.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tongues-blowup.conf), *0. &le; a < 0.012, 0.988 &le; b < 1*
+  * [`tongues-straight-sine.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tongues-straight-sine.conf)
+  * [`tongues-straight-sine-data.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/tongues-straight-sine-data.conf), saves all the results: the values of a & b in `dss-ab.txt`, the detected periods in `dss-periods.txt`, the tail of the computed orbits in `dss-x.txt`.
+  * [`tongues-straight-sine-large-region.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/)
 
 ![Example of tongue images generated by the script][tongue-blowup]
 
@@ -193,16 +193,16 @@ The `conf` directory contains examples of configuration files.
 
 ### Bifurcation diagrams
 
-The configuration file `bifd-doub-tent-dense-a.conf` can be used to draw a bifurcation diagram for *b = 1* for the "doubling plus tent" map.
-It will produce a 1250x1250 image named `tent-bifdia-dense-bw.png`.
+The configuration file [`bifd-doub-tent-dense-a.conf`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/conf/bifd-doub-tent-dense-a.conf) can be used to draw a bifurcation diagram for *b = 1* for the "doubling plus tent" map.
+It will produce a 1250x1250 image named [`tent-bifdia-dense-bw.png`][bifdia].
 The interval of *a* is *0.375 &le; a < 0.5*.
 
 
 ## Other source files
 
-1. `ezInputConf.py`: a home made library used to process configuration files using the module `configparser`
-1. `setup.py` : setup file for compiling the Cython sources
-1. `tonglib.pyx`: Cython library doing all the intensive computations
+1. [`ezInputConf.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/ezInputConf.py): a home made library used to process configuration files using the module `configparser`
+1. [`setup.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/setup.py) : setup file for compiling the Cython sources
+1. [`tonglib.pyx`][tonglib file]: Cython library doing all the intensive computations
 
 The `tonglib.pyx` contains the declaration of a `tongue_system` class that can be used to compute dynamical features of the families of mappings mentioned above.
 It uses mainly iteration and check if orbits can be periodic.
@@ -221,9 +221,10 @@ It uses NumPy arrays: `parameters_grid`, `parameters_fates`, `parameters_periods
 [bifdia]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/selected-results/tent-bifdia-dense-bw.png
 [tongue-blowup]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/selected-results/straight-sine-blowup.png
 [full-fam]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/selected-results/straight-sine-full.png
-
-
-
+[main prog]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/tongues.py
+[bif dia script]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/bifurcation-diagrams-generator.py
+[mathsvg module]: https://pypi.org/project/mathsvg/
+[tonglib file]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/tonglib.pyx
 
 
 
