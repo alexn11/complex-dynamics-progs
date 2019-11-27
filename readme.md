@@ -17,4 +17,4 @@ For drawing pictures related to the dynamics of holomorphic maps, in particular 
 
 This program has not been curated yet. This is work in progress.
 
-
+(See [transcendental-maps.md](./transcendental-maps.md).)
