@@ -13,4 +13,8 @@ See [arnold-tongues.md](./arnold-tongues.md).
 
 # Transcendental Maps
 
-This program has not been curated yet. This is worl in progress.
+For drawing pictures related to the dynamics of holomorphic maps, in particular linearizers/Poincar&eacute; maps and inverse of Fatou coordinates.
+
+This program has not been curated yet. This is work in progress.
+
+
