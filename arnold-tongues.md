@@ -14,7 +14,7 @@ The list of programs inside the folders is as follows.
 It is the main program for this folder, it is used to draw parameter spaces of several families of circle maps.
 1. [`bifurcation-diagram-generator.py`][bif dia script] :
 This program creates many configuration files and runs the program on them to generate a sequence of bifurcation diagrams in the "doubling plus tent" family with different values of b (for the specific parameters: see source).
-1. [`graph-plot.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/graph-plot.py) :
+1. [`graph-plot.py`][graph plot script] :
 This program uses the `tonglib` module to draw a graph of some example of map from the "doubling plus straight sine" family. This uses the Python module [`mathsvg`][mathsvg module].
 
 ## What it does
@@ -44,6 +44,14 @@ The result is a bifurcation diagram in the same fashion as the familiar ones.
 
 
 ## How to use
+
+### Requirements
+
+This runs with Python 3. The following modules are needed:
+3. [numpy](https://pypi.org/project/numpy/)
+2. [configparser][configparser module].
+
+The module [mathsvg][mathsvg module] is needed only for the script [`graph-plot.py`][graph plot script].
 
 ### Compilation
 
@@ -208,7 +216,7 @@ The interval of *a* is *0.375 &le; a < 0.5*.
 
 ## Other source files
 
-1. [`ezInputConf.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/ezInputConf.py): a home made library used to process configuration files using the module [`configparser`](https://docs.python.org/3/library/configparser.html).
+1. [`ezInputConf.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/ezInputConf.py): a home made library used to process configuration files using the module [`configparser`][configparser module].
 1. [`setup.py`](https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/setup.py) : setup file for compiling the Cython sources.
 1. [`tonglib.pyx`][tonglib file]: Cython library doing all the intensive computations.
 
@@ -235,6 +243,7 @@ It uses NumPy arrays for the following data: `parameters_grid`, `parameters_fate
 [bif dia script]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/bifurcation-diagrams-generator.py
 [mathsvg module]: https://pypi.org/project/mathsvg/
 [tonglib file]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/tonglib.pyx
-
+[graph plot script]: https://github.com/alexn11/complex-dynamics-progs/blob/master/arnold-tongues/graph-plot.py
+[configparser module]: https://pypi.org/project/configparser/
 
 
