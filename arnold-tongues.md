@@ -65,7 +65,7 @@ python3 tongues.py path/to/conf-file
 
 ### Generating a picture of the tongues
 
-General structure of the configuration file, this should be pretty straightforward to understand:
+Here is the general structure of the configuration file, this should be pretty straightforward to understand:
 ```
 [Program inputs]
 
@@ -79,14 +79,14 @@ max_a = <max value for a>
 min_b = <min value for b>
 max_b = <max value for b>
 
-max_period_to_test = <max period to test(!)>
-period_test_tol = <a small number telling how error is allowed when checking periodicity>
+max_period_to_test = <max period to test>
+period_test_tol = <a small number telling how much error is allowed when checking periodicity>
 
 number_of_orbits_to_compute = <number of orbits to compute and check for periodicity>
 
-orbit_initial_segment_length = <number of iterations to compute before checking the orbit is periodic>
+orbit_initial_segment_length = <number of iterations to compute before checking if the orbit is periodic>
 
-default_starting_point = <one of the orbit starting point, the other starting points will be derived from this parameters>
+default_starting_point = <one of the orbit starting point, the other starting points will be derived from this parameter>
 
 image_height = <image height in pixels>
 image_width = <image width in pixels>
@@ -100,8 +100,10 @@ The program will compute `number_of_orbits_to_compute` orbits with starting poin
 The value of `default_starting_point` is assigned to one of the starting point and the other are computed accordingly.
 
 For each orbit, the program will first compute `orbit_initial_segment_length` iterates.
-After that more iterates are computed and it periodicity of the resulting point is checked on these later iterates in the most naive way.
-The value of `period_test_tol` is used to modulate how strict one wants the periodicity to be.
+After that more iterates are computed and the periodicity of the resulting point is checked on these later iterates in the most naive way.
+The value of `period_test_tol` is used to modulate how strict this test is.
+A small value of `period_test_tol` will make the test stricter but might miss slowly converging orbits.
+Inversely a larger value will introduce false positives.
 
 The parameter `do_draw_periods` is set to `True` to show a shade relating to the computed period.
 If one only wants to draw the binary value of whether the orbit is detected periodic or not, one should instead set the following parameter:
