@@ -50,6 +50,7 @@ The result is a bifurcation diagram in the same fashion as the familiar ones.
 This runs with Python 3. The following modules are needed:
 1. [NumPy](https://pypi.org/project/numpy/)
 2. [ConfigParser][configparser module]
+
 Finally [Cython](https://cython.org/) is needed for the main module of the program.
 
 The module [mathsvg][mathsvg module] is needed only for the script [`graph-plot.py`][graph plot script].
