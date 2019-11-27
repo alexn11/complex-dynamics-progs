@@ -1,0 +1,107 @@
+*** changes:
+- DrawingOptions.py
+identical
+- ezInputConf.py
+has a new function convert_string_to_string (when the string surrounded by ")
+- GeometricTests.py
+Has new tests
+- JuliaSets.py
+has a new function simple_julia_loop: very simple iteration of z^2+c until escape
+- linearizer.py
+a lot of modifications, mostly code has been removed (probably to go into dedicated modules)
+- LinearizerMaps.py
+implement the rescaled/normalized linearizer map
+- postprocessor.py -> processor.py
+a lot of modifications, including:
+-- change of the name of the class,
+-- many new operations, 
+-- string processing (for interpretting the instruction commands and arguments)
+-- new data type (boolean)
+- Rectangle.py
+identical
+
+*** Config modules:
+- LinearizerConfig.py -> Config.py
+a lot of modifications
+- LinearizerConfigDrawings.py -> ConfigDrawings.py
+some parameters have been removed (prob. to another module)
+- LinearizerConfigIterations.py -> ConfigIterations.py
+now module is basically empty
+- LinearizerConfigPostpro.py -> ConfigProgram.py
+a lot have been removed
+- LinearizerConfigPreview.py -> ConfigPreview.py
+much simplified
+- LinearizerData.py -> Data.py
+some code removed, the remaining code has seen much modifications
+- NEW FILE -> ConfigVariables.py
+generic container for a list of named variables
+
+*** removed
+- juliasets-tester.py
+
+*** (Other) new files:
+- drawings.py
+functions for drawing (compute shade values, boundaries, etc.)
+- FatouInverseMaps.py & cauliflower.py & fatou-coord.py
+to compute inverse of fatou coordinates of the cauliflower (some files might not be used?)
+cauliflower.py is imported by FatouInverseMaps.py
+- GridsAndArrays.py
+generic functions to do computations grid-wise
+- Instructions.py
+functions implementing the different instructions available to the "processor"
+
+
+*** c and c++
+(running?)
+linearizer.c: (almost) empty non functional file
+i think the c++ files are still wip
+
+
+*** Files nowhere imported
+- fatou-coord.py: probably obsolete file (from a previous standalone project computing fatou coordinates)
+- ConfigDrawings.py, ConfigIterations.py, ConfigPreview.py, ConfigProgram.py, ConfigVariables.py
+- DrawingOptions.py
+- linearizer.py: that's the main program
+
+--------------------------------------------------
+$ find ./ -maxdepth 1 -name '*.py'
+./LinearizerConfigIterations.py
+./LinearizerConfigPreview.py
+./LinearizerMaps.py
+./postprocessor.py
+./juliasets-tester.py
+./GeometricTests.py
+./JuliaSets.py
+./LinearizerConfig.py
+./LinearizerConfigDrawings.py
+./ezInputConf.py
+./DrawingOptions.py
+./linearizer.py
+./LinearizerConfigPostpro.py
+./LinearizerData.py
+./Rectangle.py
+
+
+$ find ./experimental/ -maxdepth 1 -name '*.py'
+./experimental/LinearizerMaps.py
+./experimental/Config.py
+./experimental/GeometricTests.py
+./experimental/ConfigPreview.py
+./experimental/GridsAndArrays.py
+./experimental/cauliflower.py
+./experimental/JuliaSets.py
+./experimental/Instructions.py
+./experimental/ezInputConf.py
+./experimental/DrawingOptions.py
+./experimental/drawings.py
+./experimental/ConfigIterations.py
+./experimental/processor.py
+./experimental/ConfigDrawings.py
+./experimental/linearizer.py
+./experimental/Data.py
+./experimental/FatouInverseMaps.py
+./experimental/ConfigProgram.py
+./experimental/fatou-coord.py
+./experimental/ConfigVariables.py
+./experimental/Rectangle.py
+

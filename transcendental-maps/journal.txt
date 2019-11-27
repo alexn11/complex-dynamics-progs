@@ -1,0 +1,346 @@
+
+*** reconstructing the programs:
+
+1. COPYING FILES
+
+* v1: the root version:
+cp files from the root:
+- juliasets-tester.py
+- linearizer.py
+- JuliaSets.py
+- LinearizerConfig.py
+- LinearizerData.py
+- LinearizerMaps.py
+- postprocessor.py
+
+* missing config modules(necess)
+- LinearizerConfigIterations.py
+- LinearizerConfigPostpro, drawings and preview
+- DrawingOptions.py
+
+cp files from experimental:
+- ezInputConf.py
+- GeometricTests.py
+(since they have some improvement but still compatible)
+
+cp (identical files)
+- Rectangle.py
+
+
+* v2: the experimental dir version:
+cauliflower.py
+Config.py
+Data.py
+drawings.py
+ezInputConf.py
+FatouInverseMaps.py
+GeometricTests.py
+GridsAndArrays.py
+Instructions.py
+JuliaSets.py
+LinearizerMaps.py
+processor.py
+Rectangle.py
+
+ConfigIterations, ConfigProgram, ConfigPreview, ConfigDrawings, ConfigVariables, DrawingOptions
+
+
+
+2. checking content:
+
+cd v1
+$ ls
+DrawingOptions.py
+ezInputConf.py
+GeometricTests.py
+JuliaSets.py
+juliasets-tester.py
+LinearizerConfigDrawings.py
+LinearizerConfigIterations.py
+LinearizerConfigPostpro.py
+LinearizerConfigPreview.py
+LinearizerConfig.py
+LinearizerData.py
+LinearizerMaps.py
+linearizer.py
+postprocessor.py
+Rectangle.py
+
+cd v2
+$ ls
+cauliflower.py       ConfigPreview.py  ConfigVariables.py  drawings.py          GeometricTests.py  JuliaSets.py       processor.py
+ConfigDrawings.py    ConfigProgram.py  Data.py             ezInputConf.py       GridsAndArrays.py  LinearizerMaps.py  
+ConfigIterations.py  Config.py         DrawingOptions.py   FatouInverseMaps.py  Instructions.py    linearizer.py      Rectangle.py
+
+3. LAUNCHING PROGRAMS
+
+* 000 in v1
+$ python juliasets-tester.py 
+
+* 001 v1
+$ python  linearizer.py 
+Needs a config file as parameter.
+
+* 002 v2
+$ python linearizer.py 
+Needs a config file as parameter.
+
+* 003 v2
+modified prog-tester.conf for the path of prog-tester.pp
+$ python linearizer.py ../conf/003/prog-tester.conf > ../results/003/stdout.txt
+
+* 004 v2
+$ python linearizer.py ../conf/004/disjt.conf > ../results/004/stdout.txt
+(running)
+
+* 005 to 011 v2
+
+
+
+
+CONFS:
+${Section:entry}
+is std config syntax
+
+*****  ROOT DIR:
+
+
+:postprocessing
+postprocessor.py
+- Defines a class that can be used to apply a set of operation on numerical data
+- the operations are given in the form of a string instruction with format "operator arguments"
+- the class interprets this string and apply the operators to the arguments involved in the instruction
+- the operations are like "abs", "arg" etc.
+- the arguments are the variables involved in the computation of julia set such as the values of z or the number of iterations, etc.
+
+:specific configurations structures
+LinearizerConfigIterations.py
+LinearizerConfigPreview.py
+LinearizerConfig.py
+LinearizerConfigDrawings.py
+DrawingOptions.py
+LinearizerConfigPostpro.py
+LinearizerData.py
+
+
+
+:config parser lib
+ezInputConf.py
+
+
+
+: defines a "Rectangle" class with no member functions (only rectangle data holder)
+Rectangle.py
+
+:compute relation of a point wrt some geometric shape
+GeometricTests.py
+
+
+:comutations related to computing a Julia set
+JuliaSets.py
+
+:computations related to linearizers/poincare maps
+LinearizerMaps.py
+
+
+:main scripts
+* linearizer.py
+following instructions in config file:
+Computations:
+- compute images of points
+- evaluate main map once on a grid
+- iterate main map on a grid
+Later steps, Drawings & outputs:
+- print the number of nans issuing from the computations
+- apply some postprocessing program
+- do some drawing
+Drawing choices:
+- compute and draw boundaries
+- draw some shading using the argument
+- draw some shading using rectangle coordinates
+- draw some real value (shading?)
+- draw some integer value
+- draw the number of iterations
+
+* juliasets-tester.py
+either an exponential (1 adjustable parameter) or the dendrite quadratic polynomial
+can do:
+- "small tests" (?)
+- use a linearizer map (of the above chosen maps?)
+- compute a grid of z values
+- "big tests", distance to the julia set:
+-- compute the iterates of the singular set
+-- may try to look for a selection of points belonging to the julia set or take some fixed set of such points
+-- compute the iterates of the singular set AGAIN (probably a bug)
+-- compute the distance of each point on the grid to the julia set
+-- convert these into a shade
+- "big tests", not the distance to the julia set:
+-- computes iterates of the singular set
+-- finds points on the julia set
+-- draw these points (black/white)
+
+
+
+***** EXPERIMENTAL DIR
+./experimental/LinearizerMaps.py
+./experimental/Config.py
+./experimental/GeometricTests.py
+./experimental/ConfigPreview.py
+./experimental/GridsAndArrays.py
+./experimental/cauliflower.py
+./experimental/JuliaSets.py
+./experimental/Instructions.py
+./experimental/ezInputConf.py
+./experimental/DrawingOptions.py
+./experimental/drawings.py
+./experimental/ConfigIterations.py
+./experimental/processor.py
+./experimental/ConfigDrawings.py
+./experimental/linearizer.py
+./experimental/Data.py
+./experimental/FatouInverseMaps.py
+./experimental/ConfigProgram.py
+./experimental/fatou-coord.py
+./experimental/ConfigVariables.py
+./experimental/Rectangle.py
+
+
+experimental/cauliflower.cpp
+experimental/FatouInverseMaps.cpp
+experimental/GridsAndArrays.cpp
+
+experimental/fatouinv.c
+experimental/FatouInverseMaps.c
+experimental/linearizer.c
+
+
+
+** main scripts:
+** libs:
+
+
+
+
+NEVER IMPORTED IN THE root folder:
+- DrawingOptions.py
+not used?
+- LinearizerConfigDrawings.py, LinearizerConfigIterations.py, LinearizerConfigPostpro.py, LinearizerConfigPreview.py
+never implemented?
+- juliasets-tester.py, linearizer.py
+main scripts
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+**** LOG
+
+$ grep -h "^import " ./*py | grep -v "import math" | grep -v "import cmath" | grep -v "import sys" | grep -v "import numpy" | grep -v "import PIL" | grep -v "import warnings" | grep -v "confparser" | grep -v "configparser" | sort -u 
+import ezInputConf
+import ezInputConf as inp
+import GeometricTests
+import JuliaSets
+import LinearizerConfig
+import LinearizerData
+import LinearizerMaps
+import postprocessor
+import Rectangle
+
+
+
+
+
+$ cd experimental
+$ grep -hr "^import " | grep -v "import math" | grep -v "import cmath" | grep -v "import sys" | grep -v "import numpy" | grep -v "import PIL" | sort -u 
+import cauliflower
+import Config
+import configparser
+import confparser
+import Data
+import drawings
+import ezInputConf
+import ezInputConf as inp
+import FatouInverseMaps
+import GeometricTests
+import GridsAndArrays
+import Instructions
+import JuliaSets
+import LinearizerMaps
+import processor
+import Rectangle
+import warnings
+
+
+
+$ find experimental/ -name "*.cpp" -o -name "*.c"
+experimental/cauliflower.cpp
+experimental/fatouinv.c
+experimental/FatouInverseMaps.c
+experimental/linearizer.c
+experimental/FatouInverseMaps.cpp
+experimental/GridsAndArrays.cpp
+
+
+$ find experimental/ -name "*.cpp"
+experimental/cauliflower.cpp
+experimental/FatouInverseMaps.cpp
+experimental/GridsAndArrays.cpp
+
+
+$ find experimental/ -name "*.c"
+experimental/fatouinv.c
+experimental/FatouInverseMaps.c
+experimental/linearizer.c
+
+
+
+
+$ find . -name "*.py"
+./LinearizerConfigIterations.py
+./LinearizerConfigPreview.py
+./LinearizerMaps.py
+./postprocessor.py
+./juliasets-tester.py
+./experimental/LinearizerMaps.py
+./experimental/Config.py
+./experimental/GeometricTests.py
+./experimental/ConfigPreview.py
+./experimental/old/postprocessor.py
+./experimental/GridsAndArrays.py
+./experimental/cauliflower.py
+./experimental/JuliaSets.py
+./experimental/Instructions.py
+./experimental/ezInputConf.py
+./experimental/DrawingOptions.py
+./experimental/drawings.py
+./experimental/ConfigIterations.py
+./experimental/processor.py
+./experimental/ConfigDrawings.py
+./experimental/linearizer.py
+./experimental/Data.py
+./experimental/FatouInverseMaps.py
+./experimental/ConfigProgram.py
+./experimental/fatou-coord.py
+./experimental/ConfigVariables.py
+./experimental/Rectangle.py
+./GeometricTests.py
+./JuliaSets.py
+./LinearizerConfig.py
+./LinearizerConfigDrawings.py
+./ezInputConf.py
+./DrawingOptions.py
+./old-version-keep/LinearizerMaps.py
+./old-version-keep/juliasets-tester.py
+./old-version-keep/rabbit-zoom-out.py
+./old-version-keep/path-from-0-to-1-quarter.py
+./old-version-keep/JuliaSets.py
+./old-version-keep/ezInputConf.py
+./old-version-keep/path.py
+./old-version-keep/tests/testbot.py
+./old-version-keep/linearizer.py
+./linearizer.py
+./LinearizerConfigPostpro.py
+./LinearizerData.py
+./Rectangle.py
+
