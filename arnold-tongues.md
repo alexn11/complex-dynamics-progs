@@ -48,8 +48,8 @@ The result is a bifurcation diagram in the same fashion as the familiar ones.
 ### Requirements
 
 This runs with Python 3. The following modules are needed:
-1. [numpy](https://pypi.org/project/numpy/).
-2. [configparser][configparser module].
+1. [NumPy](https://pypi.org/project/numpy/)
+2. [ConfigParser][configparser module]
 
 The module [mathsvg][mathsvg module] is needed only for the script [`graph-plot.py`][graph plot script].
 
