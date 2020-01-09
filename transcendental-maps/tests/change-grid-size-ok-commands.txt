@@ -1,0 +1,21 @@
+
+
+name "change-grid-size"
+
+set_main_map_type linearizer
+set_critical_value -0.123+0.745j
+setup_linearizer_data 0, 0.435, 0.01, 3
+
+
+set_grid_tlbr 10, -10, -10, 10
+set_grid_width $size
+make_grid grid
+
+
+eval_main_map grid, images
+abs images, abs_images
+
+set_shade_max 10.
+draw_reals abs_images, "abs-image"
+
+

@@ -184,12 +184,19 @@ Drawing instructions:
 1. `set_drawing_type`: set the drawing type, among: `"shade"` (draw colors depending continuously on the data) and `"threshold"` (two different colors only, one when the value is below the thresold, the other for above).
 Parameters: drawing type (string, either `"shade"` or `"threshold"`)
 (Note: there is also a specific color for NaN values, colors cannot be modified directly).
-1. `set_shade_type`: set the shade type, choices are: `"normal"` and `"enhanced"`
-Parameters:
-1. `set_shade_enhance_power`: parameter for the "enhanced" version of shade drawing.
-Parameters:
-1. `set_shade_max`: ??? `"compute"` or a number
-Parameters:
+1. `set_shade_type`: set the shade type, choices are: `"normal"` and `"enhanced"`.
+The "normal" mode will basically be an affine interpolation between two colors, proportionated to the values in the array.
+The "enhanced" mode is an attempt to make the shade more progressive near smaller values.
+Parameters: shade type (string, either `"normal"` or `"enhanced"`).
+1. `set_shade_enhance_power`: parameter for the "enhanced" version of shade drawing, larger value means more distortion.
+Parameters: parameter (real).
+1. `set_shade_max`: set the variable to use for rescaling data before transforming into shades.
+It can be a real value, in which case this sets the max explicitely.
+If this is set to 
+ `"compute"`
+then the max is set to the max of the values of the array being drawn.
+Finally the parameter `"nb_iterations"` means the number of iterations that has been used in the previous call to `iterate_main_map`.
+Parameters: max value for shade (string, either `"compute"` or `"nb_iterations"`, or a real number)
 example:
 ```
 set_shade_max $nit
