@@ -128,7 +128,6 @@ Both parameters should have complex type.
 eval_main_map grid, images
 ```
 1. `abs`: compute the aboluste value, parameters: domain array (complex), range array (real).
-#1. `annulus_index`: 
 1. `arg`: compute the argument with respect to some center, parameters: center (complex), domain array (complex), range array (real).
 1. `cauliflower_julia`: compute the Cauliflower Julia set. Parameters: number of iterations (integer), domain array (complex), fate array (integer)
 
@@ -229,6 +228,6 @@ exit "message"
 
 
 
-## Examples
+
 
 

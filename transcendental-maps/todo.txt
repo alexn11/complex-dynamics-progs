@@ -1,12 +1,15 @@
+## Examples
+example section in the documentation of transcendental-maps
+
+tidy up the examples
+
+remove tlbr redundancy (if exists)
+
+
+
+
+DONE
 change the conf examples names and image names
-pick v2 explain what it does
-add git etc.
-that's it
 
-slow ones: 010, 004
-
-BEST RESULTS:
-004: everything with a linearizer (of disj type?)
-007 or 008: everything about fatou inverse
-they are identical except 8 is supposed to be rescaled
+do not allocate the arrays at the beginning so that it wont be allocated twice
 
