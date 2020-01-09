@@ -27,7 +27,7 @@ set_shade_type "normal"
 set_shade_max 1
 draw_integers tracts, "tracts-shade"
 
-draw_density tracts_boundaries, "tracts"
+draw_density tracts_boundaries, "tracts-boundaries"
 
 set_shade_max 10.
 draw_reals abs_images, "abs-image"
@@ -39,17 +39,17 @@ draw_density arg_density, "arg-image"
 cauliflower_julia $cauliflower_nit, images, cauliflower_stop
 
 set_number_of_indexes 3
-draw_indexes cauliflower_stop, "cauliflower"
+draw_indexes cauliflower_stop, "cauliflower-inverted"
 
 boundaries cauliflower_stop, cauliflower_stop_boundaries
-draw_density cauliflower_stop_boundaries, "cauliflower-bnds"
+draw_density cauliflower_stop_boundaries, "cauliflower-inverted-bnds"
 
 
 set_grid_tlbr 2., -2., -2., 2.
 make_grid grid 
 cauliflower_julia  $cauliflower_nit, grid, cauliflower_stop
 set_number_of_indexes 3
-draw_indexes cauliflower_stop, "actual-cauliflower"
+draw_indexes cauliflower_stop, "cauliflower-normal"
 
 #exit "cut"
 
@@ -69,31 +69,31 @@ abs last_point, abs_end
 
 
 set_number_of_indexes 4
-draw_indexes stop_value, "stop"
+draw_indexes stop_value, "stop-val"
 
 set_drawing_type "shade"
 set_shade_type "normal"
 set_shade_max "compute"
-draw_density nit_bounds, "nit_bounds"
+draw_density nit_bounds, "iterations-bnds"
 
 set_shade_type "enhanced"
 set_shade_enhance_power 8
 set_shade_max $nit
-draw_integers nb_iterations, "iterations"
+draw_integers nb_iterations, "iterations-shade"
 
 
 set_shade_type "enhanced"
 set_shade_enhance_power 8
 set_shade_max 2.3
-draw_reals abs_end, "end_abs"
+draw_reals abs_end, "abs-end"
 
 set_shade_type "enhanced"
 set_shade_enhance_power 8
 set_shade_max compute
-draw_integers stop_value, "stopv"
+draw_integers stop_value, "stop-val-shade"
 
 boundaries stop_value, stop_bounds
-draw_density stop_bounds, "stopvb"
+draw_density stop_bounds, "stop-val-bnds"
 
 
 
