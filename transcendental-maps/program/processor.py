@@ -256,7 +256,10 @@ class Processor:
     def split_program (self):
         prog_lines = self . program . splitlines ()
         self . prog_lines = []
+        self . line_numbers = []
+        line_number = 0
         for line in prog_lines:
+            line_number += 1
             line = line . strip ()
             if (line == ""):
                 continue
@@ -267,6 +270,7 @@ class Processor:
             if (comment_start > 0):
                 line = line [:comment_start]
             self . prog_lines . append (line)
+            self . line_numbers . append (line_number)
         self . prog_len = len (self . prog_lines)
 
         
@@ -278,6 +282,11 @@ class Processor:
         self . cursor += 1
         return line
 
+
+    def describe_position (self):
+      if (self . cursor == 0):
+        return "(nowhere)"
+      return "(@ " + str (self . line_numbers [self . cursor - 1]) + ")"
         
 
     def add_requested_variables (self, arg_variables):
@@ -294,7 +303,7 @@ class Processor:
                 if (var_type == expected_var_type):
                     continue
                 else:
-                    raise Exception ("Wrong var type")
+                    raise Exception (self . describe_position () + " Wrong var type")
             try:
                 expected_var_type = self . requested_variables [var_name]
             except (KeyError):
@@ -303,7 +312,7 @@ class Processor:
                 if (expected_var_type == "any"):
                     continue
                 elif (var_type != expected_var_type):
-                    raise Exception ("Wrong var type")
+                    raise Exception (self . describe_position () + " Wrong var type")
 
         return
 
@@ -318,14 +327,18 @@ class Processor:
         line_len = len (self . instruction_text)
         while (self . instruction_text [cursor] not in ['"']):
             if (cursor == line_len - 1):
-                raise Exception ("Unended string in \""
+                raise Exception ("Unended string "
+                                 + self . describe_position ()
+                                 + " in \""
                                  + self . instruction_text
                                  + "\"")
             else:
                 if (self . instruction_text [cursor] == '\\'):
                     cursor += 2
                     if (cursor == line_len):
-                        raise Exception ("Unended string in \""
+                        raise Exception ("Unended string "
+                                         + self . describe_position ()
+                                         + " in \""
                                          + self . instruction_text
                                          + "\"")
                 else:
@@ -408,7 +421,8 @@ class Processor:
             else:
                 next_cursor = self . skip_spaces_in_line (word_end)
             if ((next_cursor < len_line) and (line [next_cursor] != ",")):
-                raise Exception ("Expected coma, had:"
+                raise Exception (self . describe_position ()
+                                 + " Expected coma, had:"
                                  + line [word_end :]
                                  + " <- "
                                  + line)
@@ -425,7 +439,7 @@ class Processor:
         #print ("*** word="+word)
 
         if (word == ""):
-            raise Exception ("Empty word: " + line)
+            raise Exception (self . describe_position () + " Empty word: " + line)
         
         self . instruction_cursor = next_cursor
         
@@ -440,7 +454,7 @@ class Processor:
         for arg_index in range (nb_args):
             arguments [arg_index] = self . get_next_word ()
         if (self . instruction_cursor != len (self . instruction_text)):
-            raise Exception ("Extra arguments: " + self . instruction_text)
+            raise Exception (self . describe_position () + " Extra arguments: " + self . instruction_text)
         return (instruction, arguments)
 
     def determine_variable_type (self,
@@ -503,7 +517,7 @@ class Processor:
                 interpreted_argument = (variables [variable_index])
                 variable_index += 1
             else:
-                raise Exception ("Unknown argument type: " + str (arg_type))
+                raise Exception (self . describe_position () + " Unknown argument type: " + str (arg_type))
             interpreted_arguments . append (interpreted_argument)
         return interpreted_arguments
 

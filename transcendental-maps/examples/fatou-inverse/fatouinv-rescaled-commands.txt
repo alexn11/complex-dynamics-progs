@@ -26,7 +26,6 @@ set_shade_type "normal"
 
 set_shade_max 1
 draw_integers tracts, "tracts-shade"
-
 draw_density tracts_boundaries, "tracts-boundaries"
 
 set_shade_max 10.
