@@ -318,8 +318,8 @@ class Processor:
 
 
     def skip_spaces_in_line (self, cursor):
-        while ((self . instruction_text [cursor] == " ")
-               and (cursor < len (self . instruction_text))):
+        while ((cursor < len (self . instruction_text))
+               and (self . instruction_text [cursor] == " ")):
             cursor += 1
         return cursor
 
