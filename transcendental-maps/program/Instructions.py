@@ -273,7 +273,8 @@ def apply_instruction_draw_complex_density (config, data, arguments):
                            config . drawings_config . image_width,
                            config . drawings_config . image_height,
                            pixel_values,
-                           True)
+                           True,
+                           directory = config . results_dir)
     return
 
 def apply_instruction_draw_density (config, data, arguments):
@@ -286,7 +287,8 @@ def apply_instruction_draw_density (config, data, arguments):
                            config . drawings_config . image_width,
                            config . drawings_config . image_height,
                            pixel_values,
-                           True)
+                           True,
+                           directory = config . results_dir)
     return
 
 def apply_instruction_draw_indexes (config, data, arguments):
@@ -303,7 +305,8 @@ def apply_instruction_draw_indexes (config, data, arguments):
                            image_width,
                            image_height,
                            pixel_values,
-                           True)
+                           True,
+                           directory = config . results_dir)
     return
 
 
@@ -315,7 +318,8 @@ def apply_instruction_draw_integers (config, data, arguments):
                            config . drawings_config . image_width,
                            config . drawings_config . image_height,
                            pixel_values,
-                           True)
+                           True,
+                           directory = config . results_dir)
     return
 
 def apply_instruction_draw_reals (config, data, arguments):
@@ -326,7 +330,8 @@ def apply_instruction_draw_reals (config, data, arguments):
                            config . drawings_config . image_width,
                            config . drawings_config . image_height,
                            pixel_values,
-                           True)
+                           True,
+                           directory = config . results_dir)
     return
 
 def apply_instruction_eval_main_map (config, data, arguments):

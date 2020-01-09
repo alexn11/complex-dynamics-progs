@@ -36,8 +36,18 @@ class ConfigData:
         self . set_default_parameters ()
         
         config_parser = ezInputConf . get_config (config_file)
+
+        self . results_dir = ezInputConf . convert_string_to_string (config_parser ["Paths"] ["results_dir"])
         
         self . variables_config = ConfigVariables (config_parser)
+        try:
+          self . region_top = float (self . variables_config . variables ["top"])
+          self . region_left = float (self . variables_config . variables ["left"])
+          self . region_bottom = float (self . variables_config . variables ["bottom"])
+          self . region_right = float (self . variables_config . variables ["right"])
+        except (KeyError):
+          print ("ERROR : Missing some of the following needed variables: top, left, bottom, right\n")
+          raise
         
         self . preview_config = ConfigDataPreview (config_parser)
         
@@ -54,21 +64,30 @@ class ConfigData:
 
     def set_default_parameters (self):
         
-        self . name = ""
+        self . grid_width = 100
+  
         
+        # those variables are mostly obsolete
+        
+        self . name = ""
+
+
+        self . results_path = "./"
+
         self . region_top = 1.
         self . region_left = -1.
         self . region_bottom = - self . region_top
         self . region_right = - self . region_left
-        self . grid_width = 100
+        
         
         self . polynomial_critical_value = 0.+0.j
         self . main_map_type = "none"
         self . eval_main_map = None
+        
 
         self . fixed_point = 0.+0.j
         self . fixed_point_multiplier = 1.+0.j
-        
+
         self . fixed_point_choice = 0
         self . main_map_rescaling = 1.+0.j
 
@@ -91,6 +110,7 @@ class ConfigData:
 
         return
 
+
         
     def check_config_consistency (self):
 
@@ -102,10 +122,12 @@ class ConfigData:
         return
 
     def update_grid_parameters (self):
+        
         self . region_top_left = (
             self . region_left + 1.j * self . region_top)
         self . region_bottom_right = (
             self . region_right + 1.j * self . region_bottom)
+        
 
         self . drawings_config . compute_dependent_variables (
             self . grid_width,
@@ -113,7 +135,7 @@ class ConfigData:
             self . region_bottom,
             self . region_left,
             self . region_right)
-
+        
         return
 
     def compute_index_colors (self):
@@ -124,8 +146,10 @@ class ConfigData:
     def compute_dependent_variables (self):
 
         self . update_grid_parameters ()
-        
+
+       
         self . abs_multiplier = abs (self . fixed_point_multiplier)
+
 
         # todo: where needed? when to update?
         self . fundamental_annulus_outer_radius = (
@@ -133,6 +157,7 @@ class ConfigData:
         self . fundamental_annulus_inner_radius = (
             self . fundamental_annulus_outer_radius
             / self . abs_multiplier)
+
         
         self . program_config . compute_dependent_variables (self)
         
@@ -142,6 +167,7 @@ class ConfigData:
 
 
         self . compute_index_colors ()
+        
 
         return
     

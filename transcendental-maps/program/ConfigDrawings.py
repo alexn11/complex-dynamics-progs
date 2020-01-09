@@ -10,8 +10,8 @@ class ConfigDataDrawings:
         self . image_width = image_width
 
         self . set_default_drawing_options ()
-
-
+        
+        # below is probably obsolete code
         self . do_process_rectangle_coordinates_for_shading = (
             inp . try_read_a_boolean (
                 config_parser,
@@ -97,10 +97,12 @@ class ConfigDataDrawings:
             self . read_threshold_colors (config_parser)
         else:
             raise Exception ("drawing_type ?")
+        
+
         return
 
     def set_default_drawing_options (self):
-        
+              
         self . do_smooth_argument = False
         self . variable_to_use_as_max = "compute max"
         self . max_value = 0
@@ -116,7 +118,8 @@ class ConfigDataDrawings:
         self . negative_shade_color = [1., 0.3, 0., 1.]
         self . nonnegative_base_color = [0.13, 0.465, 0.37, 1.]
         self . nonnegative_shade_color = [0., 0.5, 0.2, 1.]
-
+      
+        return
 
     def read_shade_colors (self, config_parser):
         try:
@@ -168,7 +171,8 @@ class ConfigDataDrawings:
 
     def update_drawing_options (self):
         self . drawing_options = DrawingOptions (self)
-    
+
+        
     def compute_dependent_variables (self,
                                      image_width,
                                      top,
@@ -183,7 +187,7 @@ class ConfigDataDrawings:
         self . pixel_size = abs (right - left) / self . image_width
 
         self . update_drawing_options ()
-
         return
+    
     
 

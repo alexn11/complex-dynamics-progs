@@ -1,5 +1,6 @@
 
 import math
+import os
 import sys
 
 import PIL
@@ -14,7 +15,8 @@ def save_image (image_name,
                 image_width,
                 image_height,
                 pixels,
-                do_flip = False):
+                do_flip = False,
+                directory = "."):
 
     print ("Saving image: " + image_name)
     
@@ -45,7 +47,7 @@ def save_image (image_name,
         image = image . transpose (Image . FLIP_TOP_BOTTOM)
 
             
-    image_file_name = image_name + ".png"
+    image_file_name = os . path . join (directory, image_name + ".png")
     image . save (image_file_name, "PNG")
 
 
