@@ -109,7 +109,7 @@ setup_linearizer_data 0, 0.435, 0.01, 3
 
 #### Tests
 
-Tests create a array of integer values. The values are `0` for false and `1` for true.
+Tests create an array of integer values. The values are `0` for false and `1` for true.
 
 - `is_in_annulus`: check if the points in the domain array belong to a round annulus.
  Parameters: center of the annulus (complex), inner radius (real), outer radius (real), domain array (complex), range array (integer)
@@ -202,7 +202,13 @@ exit "message"
 ```
 
 
+## Examples
 
+
+
+The files in [examples/fatou-inverse](https://github.com/alexn11/complex-dynamics-progs/blob/master/transcendental-maps/examples/fatou-inverse/) illustrate the use of the script for the inverse of the Fatou coordinates of the Cauliflower.
+
+The directory [examples/linearizer](https://github.com/alexn11/complex-dynamics-progs/blob/master/transcendental-maps/examples/linearizer/) contains an example of use for the linearizer of the rabbit.
 
 
 
