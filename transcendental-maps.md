@@ -58,29 +58,15 @@ The values of variables defined in the configuration file can be used by appendi
 
 General setup instructions (and a few examples):
 
-1. `name`: Sets a name that will be prefixed to each file name produced during the execution of the script:
-```
-name "my-script"
-```
-1. `set_preview_parameters`: set up the parameters for the live character preview.
-```
-set_preview_parameters True, 50, 20, 0.2, ".", "X"
-```
+1. `name`: Sets a name that will be prefixed to each file name produced during the execution of the script: `name "my-script"`
+1. `set_preview_parameters`: set up the parameters for the live character preview. For example `set_preview_parameters True, 50, 20, 0.2, ".", "X"`
 sets text preview (`True`) of 20 lines of 50 characters. Values below the threshold of 0.2 are marked with a ``.`` and the values above with a ``X``.
 To set no preview use
-```
-set_preview_parameters False, 0, 0, 0, "", ""
-```
+` set_preview_parameters False, 0, 0, 0, "", ""`.
 1. `set_main_map_type`: choose a map type among `fatou-inverse` (inverse of the Fatou coordinates of the Cauliflower map), `linearizer` (linearizer of a quadratic polynomial).
-```
-set_main_map_type linearizer
-```
 (Note: this instruction doesn't really do anything and the main map type is not set until the corresponding `set_<map type name>_data` instruction is called).
 1. `set_grid_tlbr`: set the grid parameters (top, left, bottom and right extremities), this allows to change the window. 
-The following instruction is redundant with the default initialization:
-```
-set_grid_tlbr $top, $left, $bottom, $right
-```
+The following instruction is redundant with the default initialization: `set_grid_tlbr $top, $left, $bottom, $right`.
 When the grid parameters the arrays need to be reallocated. For that use the instruction `make_grid`.
 
 
@@ -112,11 +98,9 @@ setup_linearizer_data 0, 0.435, 0.01, 3
 Computations:
 
 1. `make_grid`: allocate the variable arrays and create an array of complex numbers corresponding to the discretization of the rectangular domain defined by the grid parameters.
-The argument is the name for the computed array of complex numbers.
- All the previous computations will be lost. For example `make_grid grid` will create a `grid` array variable.
+ The argument is the name for the computed array of complex numbers. All the previous computations will be lost. For example `make_grid grid` will create a `grid` array variable.
 1. `eval_main_map` : eval the main map.
-The first parameter is the domain array and the second parameter the range array.
-Both parameters should have complex type.
+ The first parameter is the domain array and the second parameter the range array. Both parameters should have complex type.
  If the the second parameter does not exits yet, it will be automatically allocated. Typically: `eval_main_map grid, images`.
 1. `abs`: compute the aboluste value, parameters: domain array (complex), range array (real).
 1. `arg`: compute the argument with respect to some center, parameters: center (complex), domain array (complex), range array (real).
