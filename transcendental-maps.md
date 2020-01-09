@@ -96,10 +96,7 @@ setup_fatou_inverse_data .10, 100
 
 Instructions specific to `linearizer` type of maps:
 
-1. `set_critical_value`: choose the value of `c`, critical value of the quadratic polynomial. For the (an approximate of) rabbit:
-```
-set_critical_value -0.123+0.745j
-```
+1. `set_critical_value`: choose the value of `c`, critical value of the quadratic polynomial. For the (an approximate of) rabbit use `set_critical_value -0.123+0.745j`.
 1. `setup_linearizer_data`: set the parameters for the computation of the linearizer. Parameters:
  fixed point choice (integer) either `0` or `1`,
  rescaling (complex) as for Fatou inverse maps,
@@ -116,15 +113,11 @@ Computations:
 
 1. `make_grid`: allocate the variable arrays and create an array of complex numbers corresponding to the discretization of the rectangular domain defined by the grid parameters.
 The argument is the name for the computed array of complex numbers.
- All the previous computations will be lost.```
-make_grid grid
-```
+ All the previous computations will be lost. For example `make_grid grid` will create a `grid` array variable.
 1. `eval_main_map` : eval the main map.
 The first parameter is the domain array and the second parameter the range array.
 Both parameters should have complex type.
- If the the second parameter does not exits yet, it will be automatically allocated.```
-eval_main_map grid, images
-```
+ If the the second parameter does not exits yet, it will be automatically allocated. Typically: `eval_main_map grid, images`.
 1. `abs`: compute the aboluste value, parameters: domain array (complex), range array (real).
 1. `arg`: compute the argument with respect to some center, parameters: center (complex), domain array (complex), range array (real).
 1. `cauliflower_julia`: compute the Cauliflower Julia set. Parameters: number of iterations (integer), domain array (complex), fate array (integer)
@@ -132,12 +125,12 @@ eval_main_map grid, images
 
 Tests: tests create a array of integer values. The values are `0` for false and `1` for true.
 
- 1. `is_in_annulus`: check if the points in the domain array belong to a round annulus.
+1. `is_in_annulus`: check if the points in the domain array belong to a round annulus.
  Parameters: center of the annulus (complex), inner radius (real), outer radius (real), domain array (complex), range array (integer)
- 1. `is_in_disk`: parameters are center of the disk (complex), radius of the disk (real), domain array (complex), range array (integer).
- 1. `is_in_filled_julia_set`: check if the points in the domain array are in the filled Julia set of the quadratic polynomial.
+1. `is_in_disk`: parameters are center of the disk (complex), radius of the disk (real), domain array (complex), range array (integer).
+1. `is_in_filled_julia_set`: check if the points in the domain array are in the filled Julia set of the quadratic polynomial.
  Parameters: number of iterations (integer), escape radius (real), domain array (complex), range array (integer)
- 1. `is_nan`: check if the value is (complex) NaN. Parameters: domain array (complex), range array (integer).
+1. `is_nan`: check if the value is (complex) NaN. Parameters: domain array (complex), range array (integer).
 
 
 
@@ -193,10 +186,8 @@ If this is set to
  `"compute"`
 then the max is set to the max of the values of the array being drawn.
 Finally the parameter `"nb_iterations"` means the number of iterations that has been used in the previous call to `iterate_main_map`.
-Parameters: max value for shade (string, either `"compute"` or `"nb_iterations"`, or a real number)
-example:```
-set_shade_max $nit
-```
+Parameters: max value for shade (string, either `"compute"` or `"nb_iterations"`, or a real number).
+For example this line `set_shade_max $nit` use the value of a variable defined in the configuration file as max.
 1. `set_drawing_threshold`: set the threshold for the "threshold" type of drawing.
 Parameters: threshold (real).
 1. `set_number_of_indexes`: set the number of different indexes and compute a corresponding palette of colors. Use with the instruction `draw_indexes`.
