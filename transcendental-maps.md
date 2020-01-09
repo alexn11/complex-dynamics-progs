@@ -116,15 +116,13 @@ Computations:
 
 1. `make_grid`: allocate the variable arrays and create an array of complex numbers corresponding to the discretization of the rectangular domain defined by the grid parameters.
 The argument is the name for the computed array of complex numbers.
- All the previous computations will be lost.
-```
+ All the previous computations will be lost.```
 make_grid grid
 ```
 1. `eval_main_map` : eval the main map.
 The first parameter is the domain array and the second parameter the range array.
 Both parameters should have complex type.
- If the the second parameter does not exits yet, it will be automatically allocated.
-```
+ If the the second parameter does not exits yet, it will be automatically allocated.```
 eval_main_map grid, images
 ```
 1. `abs`: compute the aboluste value, parameters: domain array (complex), range array (real).
@@ -196,8 +194,7 @@ If this is set to
 then the max is set to the max of the values of the array being drawn.
 Finally the parameter `"nb_iterations"` means the number of iterations that has been used in the previous call to `iterate_main_map`.
 Parameters: max value for shade (string, either `"compute"` or `"nb_iterations"`, or a real number)
-example:
-```
+example:```
 set_shade_max $nit
 ```
 1. `set_drawing_threshold`: set the threshold for the "threshold" type of drawing.
