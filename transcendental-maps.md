@@ -1,8 +1,7 @@
 # Documentation on tanscendental-maps
 
-## What it is
-
-## What it does
+This script is used to draw some images related to the iteration of some specific transcendental maps. This includes "escape time" of iteration and "tracts" of class B functions.
+The maps are linearizers of fixed point of quadratic polynomials and the inverse of the Fatou coordinates of the Cauliflower map.
 
 ## How to use
 
@@ -13,6 +12,7 @@ The configuration file defined the general environment for the computations and 
 ### Configuration file
 
 The configuration file contains the following sections:
+	
 1. `Paths`
 1. `Variables`
 1. `Grid`
@@ -38,8 +38,8 @@ The `Grid` section is used to define the width of the width. It is done as follo
 [Grid]
 grid_width = 400
 ```
-The grids have all the same sizes and contain all the computed values. They represent the images by some mappings of a discretized rectangular domain of the complex plane.
-The height of the grids is determined by the aspect ratio derived from the coordinates of the window (variables `top`, `left`, `bottom` and `right`).
+The arrays have all the same sizes and contain all the computed values. They represent the images by some mappings of a discretized rectangular domain of the complex plane.
+The height of the arrays is determined by the aspect ratio derived from the coordinates of the window (variables `top`, `left`, `bottom` and `right`).
 
 
 The `Program` section contains the path to the command file, for example:
@@ -56,7 +56,8 @@ Everything after a `#` symbol is ignored.
 
 The values of variables defined in the configuration file can be used by appending their name with a `$` sign.
 
-General setup instructions (with examples):
+General setup instructions (and a few examples):
+
 1. `name`: Sets a name that will be prefixed to each file name produced during the execution of the script:
 ```
 name "my-script"
@@ -74,6 +75,7 @@ set_preview_parameters False, 0, 0, 0, "", ""
 ```
 set_main_map_type linearizer
 ```
+(Note: this instruction doesn't really do anything and the main map type is not set until the corresponding `set_<map type name>_data` instruction is called).
 1. `set_grid_tlbr`: set the grid parameters (top, left, bottom and right extremities), this allows to change the window. 
 The following instruction is redundant with the default initialization:
 ```
@@ -82,14 +84,9 @@ set_grid_tlbr $top, $left, $bottom, $right
 When the grid parameters the arrays need to be reallocated. For that use the instruction `make_grid`.
 
 
-Other instructions:
-1. `exit`: leave the program before executing the following instruction (this instruction is for convenience).
-```
-exit "message"
-```
-
 
 Instructions specific to `fatou-inverse` type of maps:
+
 1. `setup_fatou_inverse_data`: set the parameters for the computations of the Fatou inverse map.
 First argument is a rescaling factor (complex number) and a large value used for numerical estimates of the Fatou coordinates (real).
 The rescaling factor is just a multiplicative factor in front of the function.
@@ -98,16 +95,16 @@ setup_fatou_inverse_data .10, 100
 ```
 
 Instructions specific to `linearizer` type of maps:
+
 1. `set_critical_value`: choose the value of `c`, critical value of the quadratic polynomial. For the (an approximate of) rabbit:
 ```
 set_critical_value -0.123+0.745j
 ```
-1. `setup_linearizer_data`: set the parameters for the computation of the linearizer.
-Parameters are:
- 1. fixed point choice (integer) either `0` or `1`
- 1. rescaling (complex) as for Fatou inverse maps
- 1. power series radius (real): the radius of the disk around the fixed point where the linearizer is computed using a power series
- 1. power series order (integer): the degree of the power series to use, max is `4`.
+1. `setup_linearizer_data`: set the parameters for the computation of the linearizer. Parameters:
+ fixed point choice (integer) either `0` or `1`,
+ rescaling (complex) as for Fatou inverse maps,
+ power series radius (real): the radius of the disk around the fixed point where the linearizer is computed using a power series,
+ power series order (integer): the degree of the power series to use, max is `4`.
 Set up the parameters for the linearizer for the first (`0`, whatever this means) fixed point, 
 rescaled by `0.435`,
 with a power series evaluation on the disk of radius `0.01` of degree `3`:
@@ -116,58 +113,115 @@ setup_linearizer_data 0, 0.435, 0.01, 3
 ```
 
 Computations:
-1. `make_grid`: allocate the variable grids and create an array of complex numbers corresponding to the discretization of the rectangular domain defined by the grid parameters.
+
+1. `make_grid`: allocate the variable arrays and create an array of complex numbers corresponding to the discretization of the rectangular domain defined by the grid parameters.
 The argument is the name for the computed array of complex numbers.
  All the previous computations will be lost.
 ```
 make_grid grid
 ```
 1. `eval_main_map` : eval the main map.
-The first parameter is the domain grid and the second parameter the range grid.
+The first parameter is the domain array and the second parameter the range array.
 Both parameters should have complex type.
  If the the second parameter does not exits yet, it will be automatically allocated.
 ```
 eval_main_map grid, images
 ```
-1. 
-is_in_disk
-abs
-arg
-cauliflower_julia
+1. `abs`: compute the aboluste value, parameters: domain array (complex), range array (real).
+#1. `annulus_index`: 
+1. `arg`: compute the argument with respect to some center, parameters: center (complex), domain array (complex), range array (real).
+1. `cauliflower_julia`: compute the Cauliflower Julia set. Parameters: number of iterations (integer), domain array (complex), fate array (integer)
 
-arg_density
-boundaries
 
-Iterations:
-reset_tests
-add_test_leave_disk
-iterate_main_map
+Tests: tests create a array of integer values. The values are `0` for false and `1` for true.
 
-Drawings:
-set_drawing_type
-set_shade_type
-set_shade_max
-set_number_of_indexes
-
-draw_integers
-draw_density
-draw_reals
-draw_indexes
+ 1. `is_in_annulus`: check if the points in the domain array belong to a round annulus.
+ Parameters: center of the annulus (complex), inner radius (real), outer radius (real), domain array (complex), range array (integer)
+ 1. `is_in_disk`: parameters are center of the disk (complex), radius of the disk (real), domain array (complex), range array (integer).
+ 1. `is_in_filled_julia_set`: check if the points in the domain array are in the filled Julia set of the quadratic polynomial.
+ Parameters: number of iterations (integer), escape radius (real), domain array (complex), range array (integer)
+ 1. `is_nan`: check if the value is (complex) NaN. Parameters: domain array (complex), range array (integer).
 
 
 
+Iterations: append tests then launch the computations with `iterate_main_map`:
+
+1. `reset_tests`: Reset all the tests. (no argument)
+1. `add_test_enter_disk`: Append the test that will stop the iteration when the orbit enters a disk.
+Parameters: center (complex), radius (real).
+1. `test_leave_annulus`: Append the test that will stop the iteration when the orbit leaves an annulus.
+Parameters: center (complex), inner radius (real), outer radius (real).
+1. `add_test_leave_disk`: Append the test that will stop the iteration when the orbit leaves a disk.
+Parameters: center (complex), radius (real).
+1. `leave_left_half_plane`: Append the test that will stop the iteration when the orbit leaves a left half plane.
+Parameters: boundary real part (real).
+1. `leave_right_half_plane`: Append the test that will stop the iteration when the orbit leaves a right half plane.
+Parameters: boundary real part (real).
+1. `iterate_main_map`: 
+The iteration stops when one of the added tests returns true. The stop value is the index of the corresponding test.
+Parameters: number of iterations (integer), starting points array (complex), last iterates array (complex), number of iterations done array (integer), stop value array (integer).
+
+
+
+Computations for drawing:
+
+1. `arg_density`: derive a better looking value for drawing the argument (computed with) using `draw_density`. First thing it does is a rescaling (from 2 pi to 1).
+Then if requested it maps the rescaled values by `4*x*(1-x)` for a smoother look.
+Parameters: arguments array (real), processed arguments array (real)
+1. `boundaries`: compute the boundaries of plane domains marked by different integer values. The result is some density charaterizing the distance to the boundary.
+Parameters: marking array (integer), boundary marker (real).
+
+
+Note on drawings: there are a few types of drawings:
+
+1. `draw_reals` and `draw_integers`: plot colors depending on the values of the arrays. The way this color is computed is determined by the drawing parameters.
+1. `draw_indexes`: draw colors reprensenting a small collection of consecutive integers ("indexes") starting from 0.
+1. `draw_density`: draw a grey shade (with darker values for lower densities), for arrays of values between 0 and 1.
+1. `draw_complex_density`: the red component of the color correspond to the real part and the green component to the imaginary part (no blue component).
+
+Drawing instructions:
+
+1. `set_drawing_type`: set the drawing type, among: `"shade"` (draw colors depending continuously on the data) and `"threshold"` (two different colors only, one when the value is below the thresold, the other for above).
+Parameters: drawing type (string, either `"shade"` or `"threshold"`)
+(Note: there is also a specific color for NaN values, colors cannot be modified directly).
+1. `set_shade_type`: set the shade type, choices are: `"normal"` and `"enhanced"`
+Parameters:
+1. `set_shade_enhance_power`: parameter for the "enhanced" version of shade drawing.
+Parameters:
+1. `set_shade_max`: ??? `"compute"` or a number
+Parameters:
+example:
+```
+set_shade_max $nit
+```
+1. `set_drawing_threshold`: set the threshold for the "threshold" type of drawing.
+Parameters: threshold (real).
+1. `set_number_of_indexes`: set the number of different indexes and compute a corresponding palette of colors. Use with the instruction `draw_indexes`.
+Parameters: number of different indexes (integer).
+1. `draw_integers`: Draw the content of an array of integer values.
+Parameters: values array (integer), image name (string).
+1. `draw_reals`:  Draw the content of an array of real values.
+Parameters: values array (real), image name (string).
+1. `draw_indexes`: Draw the content of an array of indexes using the palette created by the instruction `set_number_of_indexes`.
+Parameters: values array (integer), image name (string).
+1. `draw_density`: Draw a density.
+Parameters: values array (real), image name (string).
+1. `draw_complex_density`: Draw a complex density.
+Parameters: values array (complex), image name (string).
+
+
+Other instructions:
+
+1. `exit`: leave the program before executing the following instruction (this instruction is for convenience).
+```
+exit "message"
+```
 
 
 
 
 
-
-
-
-### Requirements
-
-### Use, generalities
 
 ## Examples
 
-## Source files
+

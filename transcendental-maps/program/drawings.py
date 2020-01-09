@@ -366,7 +366,7 @@ def compute_pixel_values (image_width,
         nonnegative_base_color = drawing_options . nonnegative_base_color
         nonnegative_shade_color = drawing_options . nonnegative_shade_color
     else:
-        raise Exception ("FAIL")
+        raise Exception ("Unknown drawing type: " + drawing_type)
         
     pixels = numpy . zeros ([image_width, image_height, 4], dtype = "double")
     for y in range (image_height):

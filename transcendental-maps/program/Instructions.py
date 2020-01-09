@@ -588,6 +588,7 @@ def apply_instruction_set_grid_width (config, data, arguments):
     return
 
 def apply_instruction_set_main_map_type (config, data, arguments):
+    # NOTE: this is a useless instruction
     config . main_map_type = arguments [0]
     # todo: update map parameters
     # todo: update map pointer
