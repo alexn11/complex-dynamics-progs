@@ -16,10 +16,12 @@ class ConfigDataPreview:
         return
     
     def compute_dependent_variables (self):
-        self . preview_parameters = [self . width,
-                                     self . height,
-                                     self . threshold,
-                                     self . white_text,
-                                     self . black_text]
+        self . preview_parameters = None
+        if (self . do_preview):
+          self . preview_parameters = [self . width,
+                                       self . height,
+                                       self . threshold,
+                                       self . white_text,
+                                       self . black_text]
         return
 
