@@ -493,7 +493,10 @@ def apply_instruction_is_where_wrt_annulus (config, data, arguments):
 def apply_instruction_make_grid (config, data, arguments):
 
     config . update_grid_parameters ()
-    
+  
+    # reallocate the arrays (all data will be lost)
+    data . allocate_arrays (config)
+
     grid_array = data . variables [arguments [0] [0]]
     # todo: end this mixed up with image_wisht and grid_width etc.
     width = config . drawings_config . image_width
@@ -577,7 +580,8 @@ def apply_instruction_set_grid_tlbr (config, data, arguments):
     return
 
 def apply_instruction_set_grid_width (config, data, arguments):
-    raise Exception ("set_grid_width not implemented")
+    #raise Exception ("set_grid_width not implemented")
+    print ("set_grid_width: don't forget to rebuild the grids with make_grid")
     # todo: need to reallocate the variable arrays
     config . grid_width = arguments [0]
     config . update_grid_parameters ()

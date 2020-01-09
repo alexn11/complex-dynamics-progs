@@ -14,7 +14,7 @@ class Data:
         
         self . nan_count = 0
 
-        self . allocate_arrays (config)
+        self . prepare_arrays (config)
 
         # todo, check max is well implemented
         if (config . drawings_config . variable_to_use_as_max == "compute max"):
@@ -99,9 +99,18 @@ class Data:
         return
 
     def allocate_arrays (self, config):
-
+        # this function is just calling another function... so far
         self . allocate_program_variables (config,
                                            config . program_config)
         
         return
+
+    def prepare_arrays (self, config):
+        # no allocation yet
+        self . variables = {}
+        variables_to_allocate =config . program_config . program . requested_variables
+        for var_name in variables_to_allocate:
+            self . variables [var_name] = None
+        return
+
         
