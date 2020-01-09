@@ -1,0 +1,30 @@
+
+name "double-image"
+
+
+
+
+set_main_map_type linearizer
+set_critical_value -0.123+0.745j
+setup_linearizer_data 0, 0.435, 0.01, 3
+
+set_preview_parameters False, 0, 0, 0, "", ""
+
+set_grid_tlbr $top, $left, $bottom, $right
+make_grid grid
+
+
+eval_main_map grid, images
+eval_main_map images, images
+is_in_disk 0.+0.j, 2., images, tracts
+boundaries tracts, tracts_boundaries
+abs images, abs_images
+arg 0+0j, images, arg_images
+set_drawing_type "shade"
+set_shade_type "normal"
+set_shade_max 1
+draw_integers tracts, "tracts-shade"
+draw_density tracts_boundaries, "tracts-boundaries"
+
+
+
